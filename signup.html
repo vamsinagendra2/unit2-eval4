@@ -1,0 +1,79 @@
+<html>
+
+<head>
+    <title>Log in</title>
+</head>
+<style>
+    body{
+        background-color: black;
+    }
+    form{
+        display: flex;
+        flex-direction: column;
+        width: 20%;
+        margin: auto;
+        background-color: navy;
+        padding: 30px;
+    }
+    input,button{
+        margin: 20px;
+        height: 30px;
+    }
+    h2{
+        color: white;
+        margin-left: 47%;
+        font-size: 30px;
+        margin-top: 150px;
+    }
+    button{
+        background-color: tomato;
+        border: none;
+    }
+</style>
+
+<body>
+    <h2>Sign up</h2>
+    <form id="logform">
+        <input type="text" id="name" placeholder="Name" required />
+        <input type="number" id="number" placeholder="Mobile number" required />
+        <input type="email" id="email" placeholder="Your Email" required />
+        <input type="password" id="password" placeholder="Password" required />
+        <button onclick="sign()">Sign in</button>
+    </form>
+</body>
+<script>
+    function sign() {
+        let form = document.getElementById('logform');
+        let name = form.name.value;
+        let number = form.number.value;
+        let email = form.email.value;
+        let password = form.password.value;
+
+        if (name == "" || number == "" || email == "" || password == "") {
+            alert('fill required areas');
+        } else {
+            let users = {
+                    name,
+                    number,
+                    email,
+                    password
+                };
+
+            let usersdata = localStorage.getItem('userdata');
+            if (usersdata == null) {
+                usersdata = [];
+            } else {
+                usersdata = JSON.parse(localStorage.getItem('userdata'));
+            }
+
+            usersdata.push(users);
+
+            localStorage.setItem('userdata', JSON.stringify(usersdata));
+
+            console.log(usersdata)
+        }
+    }
+
+</script>
+
+</html>

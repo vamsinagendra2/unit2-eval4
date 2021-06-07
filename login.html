@@ -1,0 +1,65 @@
+<html>
+
+<head>
+    <title>Log in</title>
+</head>
+<style>
+  body{
+        background-color: rgb(90, 87, 87);
+    }
+    form{
+        display: flex;
+        flex-direction: column;
+        width: 20%;
+        margin: auto;
+        background-color: rgb(177, 14, 76);
+        padding: 30px;
+    }
+    input,button{
+        margin: 20px;
+        height: 30px;
+    }
+    h2{
+        color: white;
+        margin-left: 47%;
+        font-size: 30px;
+        margin-top: 150px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    button{
+        background-color: rgb(31, 175, 211);
+        border: none;
+        color: white;
+        font-size: 15px;
+    }
+</style>
+<body>
+    <h2>log in</h2>
+   <form id="logform">
+       <input type="email" id="email" placeholder="Your Email" required/>
+        <input type="password" id="password" placeholder="Password" required/>
+        <button onclick="log()">Log in</button>
+   </form>
+</body>
+<script>
+    function log(){
+        let form = document.getElementById('logform');
+        let email = form.email.value;
+        let password = form.password.value;
+
+        if(email==""||password==""){
+            alert('fill required areas');
+        }else{
+            let usersdata = JSON.parse(localStorage.getItem('userdata'));
+
+            usersdata.forEach(function(e){
+                if(e.email==email&&e.password==password){
+                    window.location.href='menu.html';
+                }
+            })
+        }
+    }
+
+</script>
+
+</html>

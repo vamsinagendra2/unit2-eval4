@@ -1,0 +1,88 @@
+<html>
+
+<head>
+    <title>Log in</title>
+</head>
+<style>
+     body{
+        background-color: black;
+    }
+    #main{
+        display: grid;
+        grid-template-columns: auto auto auto;
+        margin-top: 50px;
+    }
+
+    img{
+        width: 100%;
+    }
+    .item{
+        width: 50%;
+        background-color: white;
+        margin-left: 15%;
+        height: 300px;
+        margin-bottom: 20px;
+    }
+    .item>h3,.item>p{
+        margin-left: 10px;
+        font-weight: bold;
+    }
+    button{
+        border: none;
+        background-color: rgb(255, 0, 0);
+        width: 15%;
+        height: 35px;
+        color: white;
+        margin-top: 20px;
+        margin-left: 5%;
+    }
+    h1{
+        color: white;
+    }
+</style>
+
+<body>
+    <h1>one step away.........to reach happiness</h1>
+   <button onclick="submit()">Submit order</button>
+</body>
+<script>
+  let main = document.createElement('div');
+    let body = document.querySelector('body');
+    main.setAttribute('id', 'main');
+    let cart= JSON.parse(localStorage.getItem('cart'));
+
+    body.append(main);
+    cart.forEach(function (e) {
+        let div = document.createElement('div');
+         div.setAttribute('class', 'item');
+        let img = document.createElement('img');
+        img.src = e.Image;
+         let h3 = document.createElement('h3');
+        h3.innerHTML = "Rs." + e.price;
+        let p = document.createElement('p');
+        p.innerHTML = "Description:" + e.about;
+
+        div.append(img, h3, p);
+        main.append(div);
+    })
+
+    function submit(){
+        setTimeout(function(){
+            alert('Your order is accepted')
+        },0);
+        setTimeout(function () {
+            alert('Your order is being cooked')
+        }, 3000)
+        setTimeout(function () {
+            alert('Your order is ready')
+        }, 8000)
+         setTimeout(function () {
+            alert('Order out for delivery')
+        }, 10000)
+         setTimeout(function () {
+            alert('Order delivered')
+        }, 12000)
+    }
+
+</script>
+</html>

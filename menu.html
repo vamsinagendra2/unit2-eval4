@@ -1,0 +1,118 @@
+
+<html>
+
+<head>
+    <title>Menu</title>
+</head>
+<style>
+    body{
+        background-color: black;
+    }
+    #main{
+        display: grid;
+        grid-template-columns: auto auto auto;
+    }
+
+    img{
+        width: 100%;
+    }
+    .item{
+        width: 50%;
+        background-color: white;
+        margin-left: 15%;
+        height: 400px;
+    }
+    .item>h3,.item>h4,.item>p,button{
+        margin-left: 10px;
+    }
+    button{
+        border: none;
+        background-color: teal;
+        width: 50%;
+        height: 30px;
+        color: white;
+    }
+    h1{
+        color: white;
+    }
+</style>
+
+<body>
+    <div><h1>Let your tounge feel the taste, with our art of cooking-"Here is your menu"</h1></div>
+</body>
+<script>
+
+    let menu=[
+        {
+            Image:"https://th.bing.com/th/id/OIP.g4qB32PHKgoYmlb5lR8_lwHaEo?pid=ImgDet&rs=1",
+            price:2000,
+            about:"Steamed, char-grilled, pan-fried, stir-fried, or slow-cooked.",
+            time:"15min",
+        },
+        {
+            Image: "https://i.pinimg.com/originals/19/78/70/1978702d6fe2e136d4c7066bc0f29cd1.jpg",
+            price: 1500,
+            about: "Soft textures - smooth, silky, unctuous, coating, tender, and juicy.",
+            time: "20min",
+        },
+        {
+            Image: "https://img.traveltriangle.com/blog/wp-content/uploads/2018/12/cover-for-street-food-in-sydney.jpg",
+            price: 800,
+            about: " Other textures - charred ",
+            time: "45min",
+        },
+    ];
+
+    let main = document.createElement('div');
+    let body = document.querySelector('body');
+    main.setAttribute('id','main');
+
+    body.append(main);
+    menu.forEach(function(e){
+        let div= document.createElement('div');
+        div.setAttribute('class','item');
+        let img = document.createElement('img');
+        img.src=e.Image;
+        let h3 = document.createElement('h3');
+        h3.innerHTML="Rs."+e.price;
+        let p= document.createElement('p');
+        p.innerHTML="Description:"+e.about;
+        let h4 = document.createElement('h4');
+        h4.innerHTML="Duration:"+e.time;
+
+        let btn = document.createElement('button');
+        btn.innerHTML="Add to cart";
+
+        btn.onclick=function(){
+            add(e);
+        }
+
+        div.append(img,h3,p,h4,btn);
+        main.append(div);
+    })
+
+
+    if(localStorage.getItem('menu')==null){
+        localStorage.setItem('menu',JSON.stringify(menu));
+    }
+
+    function add(ele){
+        let cart = localStorage.getItem('cart');
+        if (cart == null) {
+            cart = [];
+        } else {
+            cart = JSON.parse(localStorage.getItem('cart'));
+        }
+
+        cart.push(ele);
+        console.log(cart);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        alert('added to cart');
+    }
+
+    
+   
+
+</script>
+
+</html>
